@@ -1,5 +1,3 @@
-
-
 RequestStreamedTextureDict("CommonMenu")
 
 CustomUI = { }
@@ -133,7 +131,7 @@ local function drawTitle()
 
 		else
             if HasStreamedTextureDictLoaded("CommonMenu") then
-                SetUiLayer(0)
+                SetScriptGfxDrawOrder(0)
             end
 
         end
@@ -168,7 +166,7 @@ local function drawMenuBackground()
         local y = menus[currentMenu].y + titleHeight + buttonHeight + menuHeight / 2
 
         if HasStreamedTextureDictLoaded("CommonMenu") then
-            SetUiLayer(0)
+            SetScriptGfxDrawOrder(0)
             DrawSprite("CommonMenu", "Gradient_Bgd", x, y, menuWidth, menuHeight, 0.0, 255, 255, 255, 255, 0)
         else
             RequestStreamedTextureDict("CommonMenu")
@@ -224,7 +222,7 @@ local function drawButton(text, subText)
 
         if text ~= "!!separator!!" then
             if menus[currentMenu].currentOption == optionCount and HasStreamedTextureDictLoaded("CommonMenu") then
-                SetUiLayer(1)
+                SetScriptGfxDrawOrder(1)
                 DrawSprite("CommonMenu", "Gradient_Nav", x, y, menuWidth, buttonHeight, 0.0, 255, 255, 255, 255, 0)
             end
  
@@ -294,7 +292,7 @@ local function drawSpriteButton(text, textDict, sprite, focusSprite)
         end
 
         if menus[currentMenu].currentOption == optionCount and HasStreamedTextureDictLoaded("CommonMenu") then
-            SetUiLayer(1)
+            SetScriptGfxDrawOrder(1)
             DrawSprite("CommonMenu", "Gradient_Nav", x, y, menuWidth, buttonHeight, 0.0, 255, 255, 255, 255, 0)
         end
         
@@ -303,14 +301,14 @@ local function drawSpriteButton(text, textDict, sprite, focusSprite)
         if textDict and sprite then
 			if focusSprite then
                 if menus[currentMenu].currentOption == optionCount then
-                    SetUiLayer(2)
+                    SetScriptGfxDrawOrder(2)
 					drawSprite(textDict, focusSprite, menus[currentMenu].x + menuWidth - buttonTextXOffset*2 , y - buttonHeight / 2 + (buttonTextYOffset*3.75), buttonScale, menus[currentMenu].menuSubTextColor)
                 else
-                    SetUiLayer(2)
+                    SetScriptGfxDrawOrder(2)
 					drawSprite(textDict, sprite, menus[currentMenu].x + menuWidth - buttonTextXOffset*2 , y - buttonHeight / 2 + (buttonTextYOffset*3.75), buttonScale, subTextColor)
 				end
             else
-                SetUiLayer(2)
+                SetScriptGfxDrawOrder(2)
 				drawSprite(textDict, sprite, menus[currentMenu].x + menuWidth - buttonTextXOffset*2 , y - buttonHeight / 2 + (buttonTextYOffset*3.75), buttonScale, subTextColor)
 			end
         end
