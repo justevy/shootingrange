@@ -608,6 +608,7 @@ function test(type)
             if remb == 1 then
                 GiveWeaponToPed(ped, GetHashKey('weapon_combatpistol'), 999, false, true)
             end
+	TriggerServerEvent("evy_shootingrange:unreserve_sv")
     elseif type == "Medium" then
         local T = 500
         local ped = GetPlayerPed(-1)
